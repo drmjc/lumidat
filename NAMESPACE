@@ -1,0 +1,4 @@
+export(lumiR.idat)
+export(read.illumina.idat)
+export(read.illumina.manifest)
+export(read.ilmn.idat)

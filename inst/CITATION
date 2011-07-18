@@ -1,0 +1,23 @@
+citHeader("To cite package 'lumidat' in publications, use:")
+
+desc <- packageDescription("lumidat")
+year <- sub(".*(2[[:digit:]]{3})-.*", "\\1", desc$Date) 
+vers <- paste("R package version", desc$Version) 
+
+citEntry(entry = "Article",
+  author = personList(
+    as.person("Mark J Cowley"),
+    as.person("Mark Pinese"),
+    as.person("David Eby"),
+    as.person("Michael R Reich"),
+    as.person("Andrew V Biankin"),
+    as.person("Warren Kaplan"),
+    as.person("Jianmin Wu")),
+  title = "IlluminaIDatReader: A program for reading raw Illumina Gene Expression data (manuscript in prepration)",
+  journal = "Bioinformatics",
+  year = "2011",
+  volume = "?",
+  pages = "?",
+  textVersion = "M.J. Cowley, M. Pinese, D. Eby, M.R. Reich, A.V. Biankin, J. Wu, 2011. IlluminaIDatReader: A program for reading raw Illumina Gene Expression data (manuscript in prepration)",
+  note = vers
+)

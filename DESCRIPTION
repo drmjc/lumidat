@@ -1,0 +1,28 @@
+Package: lumidat
+Type: Package
+Title: Methods for importing Illumina gene expression iDAT files
+Version: 1.0
+Date: 2011-05-26
+Author: Mark Cowley
+Maintainer: Mark Cowley <m.cowley@garvan.org.au>
+Depends: roxygen
+Suggests: lumi, limma
+Description: This package enables the decryption, and preprocessing of
+    lllumina gene expression iDAT files (aka version 1 iDAT files).
+    Previously, the only option that Illumina gene expression customers
+    had was to rely upon a miroarray core facility with access to an
+    Illumina Scanner and a copy of Illumina BeadStudio, or GenomeStudio
+    to pre-process the array data. Our intention is to allow users to
+    pre-process their probe-level Illumina data using this software,
+    thereby enabling them to choose from the collection of
+    sophisticated normalisation and pre-processing procedures, which
+    have recently been demonstrated by Shi et al, 2010 to
+    simultaneously improve noise and bias, via the \eqn{lumi}, or
+    \eqn{limma} pipelines. We have made every effort to reproduce the
+    GenomeStudio output, down to the Detection P-Value calculation, the
+    order of the rows, the background correction procedure (which is
+    only applied to gene-probes), the file formats and names.
+License: file LICENSE
+LazyLoad: yes
+Collate: 'lumidat-package.R' 'read.illumina.idat.R' 'lumiR.idat.R'
+    'read.illumina.manifest.R' 'read.ilmn.idat.R'
