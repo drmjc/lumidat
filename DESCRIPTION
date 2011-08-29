@@ -1,12 +1,9 @@
 Package: lumidat
-Type: Package
-Title: Methods for importing Illumina gene expression iDAT files
-Version: 1.0
-Date: 2011-05-26
-Author: Mark Cowley
 Maintainer: Mark Cowley <m.cowley@garvan.org.au>
-Depends: roxygen
-Suggests: lumi, limma
+License: file LICENSE
+Title: Methods for importing Illumina gene expression iDAT files
+Type: Package
+Author: Mark Cowley
 Description: This package enables the decryption, and preprocessing of
     lllumina gene expression iDAT files (aka version 1 iDAT files).
     Previously, the only option that Illumina gene expression customers
@@ -22,7 +19,9 @@ Description: This package enables the decryption, and preprocessing of
     GenomeStudio output, down to the Detection P-Value calculation, the
     order of the rows, the background correction procedure (which is
     only applied to gene-probes), the file formats and names.
-License: file LICENSE
-LazyLoad: yes
+Version: 1.0.1
+Date: 2011-08-29
+Depends: roxygen
+Suggests: lumi, limma
 Collate: 'lumidat-package.R' 'read.illumina.idat.R' 'lumiR.idat.R'
     'read.illumina.manifest.R' 'read.ilmn.idat.R'
