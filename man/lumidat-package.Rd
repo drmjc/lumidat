@@ -52,17 +52,12 @@ LazyLoad: \tab yes\cr
 \docType{package}
 \author{Mark Cowley <m.cowley@garvan.org.au>, with contributions from Mark Pinese and David Eby}
 \references{[1] Shi, W., Oshlack, A., & Smyth, G. K. (2010). Optimizing the noise versus bias trade-off for 
-Illumina whole genome expression BeadChips Nucleic acids research, 38(22), e204. (doi:10.1093/nar/gkq871)
-
-[2] Genome Studio Gene Expression Module User Guide, version 1.0, Illumina
-
-[3] \url{http://genepattern.broadinstitute.org}
-
+Illumina whole genome expression BeadChips Nucleic acids research, 38(22), e204. (doi:10.1093/nar/gkq871) \cr
+[2] Genome Studio Gene Expression Module User Guide, version 1.0, Illumina \cr
+[3] \url{http://genepattern.broadinstitute.org} \cr
 [4] Du, P., Kibbe, W. A., & Lin, S. M. (2007). nuID: a universal naming scheme of oligonucleotides
-for illumina, affymetrix, and other microarrays Biol Direct, 2, 16. (doi:10.1186/1745-6150-2-16)
-
-[5] \url{http://www.switchtoi.com/annotationfiles.ilmn}
-
-[6] \url{http://www.switchtoi.com/annotationprevfiles.ilmn}}
+for illumina, affymetrix, and other microarrays Biol Direct, 2, 16. (doi:10.1186/1745-6150-2-16) \cr
+[5] \url{http://www.switchtoi.com/annotationfiles.ilmn} \cr
+[6] \url{http://www.switchtoi.com/annotationprevfiles.ilmn} \cr}
 \examples{\dontrun{example(GenomeStudioFileCreator)}}
 

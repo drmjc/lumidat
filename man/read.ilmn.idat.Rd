@@ -3,7 +3,7 @@
 \title{Read Illumina gene expression iDAT files.}
 \usage{read.ilmn.idat(files, path, probeID=c("ArrayAddressID", "ProbeID", "Sequence",
     "NuID"), manifestfile, controls=TRUE, other.columns, verbose=TRUE,
-    ...)
+    memory="-Xmx1024m", ...)
 }
 \description{Read Illumina gene expression iDAT files.
 This function can decrypt Illumina gene expression iDAT files (aka version 1 iDAT files). 
@@ -37,6 +37,7 @@ imported; if FALSE, only the gene-probes will be imported. See
 required, such as "Detection", "Avg_NBEADS", "BEAD_STDEV" etc. Each keyword corresponds 
 to one type of columns. See \code{\link[limma]{read.ilmn}} for more details.}
 \item{verbose}{logical, \eqn{TRUE} to report names of profile files being read.}
+\item{memory}{the maximum amount of memory to use. see \code{\link{read.illumina.idat}}.}
 \item{...}{any other parameters are passed on to \code{\link[limma]{read.columns}}.}
 }
 \examples{path <- system.file("extdata", package="lumidat")

@@ -12,17 +12,16 @@ It will create \eqn{Sample Probe Profile.txt} and \eqn{Control Probe Profile.txt
 similar to Illumina GenomeStudio version 1.8.0 [1]. We have made every effort to reproduce the 
 GenomeStudio output, down to the Detection P-Value calculation, the order of the rows, the 
 background correction procedure (which is only applied to gene-probes), the output file headers
-sample and ProbeID naming.}
-\details{Array manifest files
-
+sample and ProbeID naming, however we cannot guarantee that the output will be identical to
+that produced by GenomeStudio.}
+\details{Array manifest files \cr
 Array manifest files can be downloaded from Illumina [2,3]. It is important to
 use the TXT version, not the BGX version. You can use a newer release of the manifest file 
 as long as you get the right array type. For example, HumanHT-12_V3 arrays can use the 
 \eqn{HumanHT-12_V3_0_R2_11283641_A.txt} or \eqn{HumanHT-12_V3_0_R3_11283641_A.txt} 
 manifest files.
 
-Probe naming
-
+Probe naming \cr
 There is some confusion about the naming of Illumina Probes. From the array manifest files, 
 you can uniquely
 identify each probe by either the Illumina Probe ID (eg ILMN_1802252), the Array Address 
@@ -33,8 +32,7 @@ If you choose \eqn{NuID}, note that unlike \code{\link[lumi]{addNuID2lumi}}, whi
 pre-built mapping tables, we calculate NuID's directly from the probe sequences within
 the manifest file.
 
-Probe collapsing
-
+Probe collapsing \cr
 Some genes are represented by multiple probes. You can either obtain values at the
 probe-level, or the gene-level using the \sQuote{collapseMode} parameter:
 \enumerate{
@@ -54,18 +52,23 @@ there is no single median probe, so from the 2 median probes, we take
 the conservative option of choosing the average AVG_Intensity, the smallest NumBeads, and the 
 largest Probe_STDERR and Detection PVal, for those 2 median probes
 
-Background correct
-
+Background correct \cr
 Illumina GenomeStudio offers a background correction option. This estimates the background, and
 subtracts it from only the gene-level probes; ie control probes are never background corrected.
 The value is the mean AVG_Signal level of all the negative control probes on each array.
 
-TODO
-
+TODO \cr
 represent manifest files the way that Affymetrix CDF's are (ie in data packages).
 Import probe-level annotation from the manifest file into the resulting LumiBatch object.
 Add options for background subtraction.
-Add options for gene-level summarisation.}
+Add options for gene-level summarisation.
+
+Memory usage \cr
+At the heart of this function is a Java program, which requires that you specify an appropriate
+maximum amount of memory. The default is -Xmx1024m, which reserves 1 GB RAM. We have analysed
+85 Human HT12 arrays using -Xmx2048m. If you get the following error:
+\sQuote{Exception in thread "main" java.lang.OutOfMemoryError: Java heap space}
+Then you need to increase the amount of RAM, upto the maximum available in your system.}
 \value{If collapseMode=\dQuote{NONE}, then invisbly return a character[2] containing the 
 file paths of the \dQuote{Sample Probe Profile.txt} and \dQuote{Control Probe Profile.txt}
 files. Otherwise, invisbly return a character[2] containing the 
@@ -73,14 +76,11 @@ file paths of the \dQuote{Sample Gene Profile.txt} and \dQuote{Control Gene Prof
 files.}
 \author{Mark Cowley \email{m.cowley@garvan.org.au}, with contributions from Mark Pinese, 
 David Eby.}
-\references{[1] Genome Studio Gene Expression Module User Guide, version 1.0, Illumina 
-
-[2] \url{http://www.switchtoi.com/annotationfiles.ilmn}
-
-[3] \url{http://www.switchtoi.com/annotationprevfiles.ilmn}
-
+\references{[1] Genome Studio Gene Expression Module User Guide, version 1.0, Illumina \cr
+[2] \url{http://www.switchtoi.com/annotationfiles.ilmn} \cr
+[3] \url{http://www.switchtoi.com/annotationprevfiles.ilmn} \cr
 [4] Du, P., Kibbe, W. A., & Lin, S. M. (2007). nuID: a universal naming scheme of oligonucleotides
-for illumina, affymetrix, and other microarrays Biol Direct, 2, 16. (doi:10.1186/1745-6150-2-16)}
+for illumina, affymetrix, and other microarrays Biol Direct, 2, 16. (doi:10.1186/1745-6150-2-16) \cr}
 \arguments{\item{files}{A character vector of at least one file name}
 \item{path}{The path to the directories where the files are. This defaults to the current
 working directory.}
