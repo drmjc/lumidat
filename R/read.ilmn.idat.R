@@ -26,6 +26,7 @@ roxygen()
 #' required, such as "Detection", "Avg_NBEADS", "BEAD_STDEV" etc. Each keyword corresponds 
 #' to one type of columns. See \code{\link[limma]{read.ilmn}} for more details.
 #' @param verbose logical, \eqn{TRUE} to report names of profile files being read.
+#' @param memory the maximum amount of memory to use. see \code{\link{read.illumina.idat}}.
 #' @param ... any other parameters are passed on to \code{\link[limma]{read.columns}}.
 #' @return An \code{\link[limma]{EListRaw-class}} object with the following components:
 #' \tabular{ll}{
@@ -43,7 +44,7 @@ roxygen()
 #' manifestfile <- system.file("extdata", "HumanHT-12_V3_0_R1_99999999.txt", package="lumidat")
 #' res <- read.ilmn.idat(files, path, manifestfile, probeID="NuID", controls=TRUE)
 #'
-read.ilmn.idat <- function (files=NULL, path=NULL, probeID=c("ArrayAddressID", "ProbeID", "Sequence", "NuID"), manifestfile=NULL, controls=TRUE, other.columns=NULL, verbose=TRUE, ...) {
+read.ilmn.idat <- function (files=NULL, path=NULL, probeID=c("ArrayAddressID", "ProbeID", "Sequence", "NuID"), manifestfile=NULL, controls=TRUE, other.columns=NULL, verbose=TRUE, memory="-Xmx1024m", ...) {
 	require(limma)
 	
 	outdir <-  tempdir()
