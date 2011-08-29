@@ -8,6 +8,9 @@ roxygen()
 #' See \code{\link{read.illumina.idat}} for more details on Illumina arrays, manifest files, and probeID naming options.
 #' See \code{\link[lumi]{lumiR}} for more details on all paramaters from \eqn{detectionTh} onwards.
 #'
+#' @note
+#' TODO: represent manifest files the way that Affymetrix CDF's are (ie in data packages).\cr
+#' TODO: Import probe-level annotation from the manifest file into the resulting LumiBatch object.\cr
 #' @param files A character vector of at least one file name
 #' @param path The path to the directories where the files are. This defaults to the current 
 #' working directory.
@@ -32,8 +35,6 @@ roxygen()
 #'
 #' @return return a LumiBatch object
 #' @author Mark Cowley, with contributions from Mark Pinese, David Eby.
-#' @TODO represent manifest files the way that Affymetrix CDF's are (ie in data packages).
-#' @TODO Import probe-level annotation from the manifest file into the resulting LumiBatch object.
 #' @seealso \code{\link{read.illumina.idat}}
 #' \code{\link[lumi]{lumiR}}
 #' @export
