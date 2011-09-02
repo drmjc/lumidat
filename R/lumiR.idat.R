@@ -53,7 +53,7 @@ lumiR.idat <- function(files=NULL, path=NULL, probeID=c("ArrayAddressID", "Probe
 	require(lumi)
 	
 	outdir <-  tempdir()
-	files <- read.illumina.idat(files=files, path=path, probeID=probeID, manifestfile=manifestfile, outdir=outdir, verbose=verbose, collapseMode="none", prefix=NULL, backgroundCorrect=FALSE)
+	files <- read.illumina.idat(files=files, path=path, probeID=probeID, manifestfile=manifestfile, outdir=outdir, verbose=verbose, collapseMode="none", prefix=NULL, backgroundCorrect=FALSE, memory=memory)
 	# files[1] = "<dir>/Sample Probe Profile.txt", files[2] = "<dir>/Control Probe Profile.txt"
 	on.exit(unlink(files))	
 
