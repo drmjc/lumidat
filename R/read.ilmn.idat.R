@@ -1,5 +1,5 @@
 #' @include read.illumina.idat.R
-roxygen()
+NULL
 
 #' Read Illumina gene expression iDAT files.
 #' This function can decrypt Illumina gene expression iDAT files (aka version 1 iDAT files). 

@@ -62,4 +62,4 @@
 #' [6] \url{http://www.switchtoi.com/annotationprevfiles.ilmn} \cr
 #' @examples
 #' \dontrun{example(GenomeStudioFileCreator)}
-roxygen()
+NULL
