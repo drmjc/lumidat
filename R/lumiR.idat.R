@@ -2,6 +2,7 @@
 NULL
 
 #' Read Illumina gene expression iDAT files.
+#' 
 #' This function can decrypt Illumina gene expression iDAT files (aka version 1 iDAT files). It will
 #' temporarily create GenomeStudio-compatible output files, and then run \code{\link[lumi]{lumiR}}.
 #'

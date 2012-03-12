@@ -1,14 +1,12 @@
 \name{read.ilmn.idat}
 \alias{read.ilmn.idat}
-\title{Read Illumina gene expression iDAT files.
-This function can decrypt Illumina gene expression iDAT files (aka version 1 iDAT files).
-It will temporarily create GenomeStudio-compatible output files, and then run
-\code{\link[limma]{read.ilmn}}.}
+\title{Read Illumina gene expression iDAT files.}
 \usage{
-  read.ilmn.idat(files = NULL, path = NULL, probeID =
-  c("ArrayAddressID", "ProbeID", "Sequence", "NuID"),
-  manifestfile = NULL, controls = TRUE, other.columns =
-  NULL, verbose = TRUE, memory = "-Xmx1024m", ...)
+  read.ilmn.idat(files = NULL, path = NULL,
+    probeID = c("ArrayAddressID", "ProbeID", "Sequence", "NuID"),
+    manifestfile = NULL, controls = TRUE,
+    other.columns = NULL, verbose = TRUE,
+    memory = "-Xmx1024m", ...)
 }
 \arguments{
   \item{files}{character vector of >= 1 iDAT file name}
@@ -54,11 +52,16 @@ It will temporarily create GenomeStudio-compatible output files, and then run
   list of other column data.\cr }
 }
 \description{
+  This function can decrypt Illumina gene expression iDAT
+  files (aka version 1 iDAT files). It will temporarily
+  create GenomeStudio-compatible output files, and then run
+  \code{\link[limma]{read.ilmn}}.
+}
+\details{
   If \eqn{controls=TRUE}, then both the gene-probes, and
   the control-probes will be imported into an
   \code{\link[limma]{EListRaw-class}} object.
-}
-\details{
+
   See \code{\link{read.illumina.idat}} for more details on
   Illumina arrays, manifest files, and probeID naming
   options. See \code{\link[limma]{read.ilmn}} for more

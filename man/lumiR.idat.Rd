@@ -1,16 +1,13 @@
 \name{lumiR.idat}
 \alias{lumiR.idat}
-\title{Read Illumina gene expression iDAT files.
-This function can decrypt Illumina gene expression iDAT files (aka version 1 iDAT files). It will
-temporarily create GenomeStudio-compatible output files, and then run \code{\link[lumi]{lumiR}}.}
+\title{Read Illumina gene expression iDAT files.}
 \usage{
-  lumiR.idat(files = NULL, path = NULL, probeID =
-  c("ArrayAddressID", "ProbeID", "Sequence", "NuID"),
-  manifestfile = NULL, detectionTh = 0.01, na.rm = TRUE,
-  parseColumnName = FALSE, checkDupId = TRUE, QC = TRUE,
-  columnNameGrepPattern = list(exprs = "AVG_SIGNAL",
-  se.exprs = "BEAD_STD", detection = "DETECTION", beadNum =
-  "Avg_NBEADS"), verbose = TRUE, memory = "-Xmx1024m", ...)
+  lumiR.idat(files = NULL, path = NULL,
+    probeID = c("ArrayAddressID", "ProbeID", "Sequence", "NuID"),
+    manifestfile = NULL, detectionTh = 0.01, na.rm = TRUE,
+    parseColumnName = FALSE, checkDupId = TRUE, QC = TRUE,
+    columnNameGrepPattern = list(exprs = "AVG_SIGNAL", se.exprs = "BEAD_STD", detection = "DETECTION", beadNum = "Avg_NBEADS"),
+    verbose = TRUE, memory = "-Xmx1024m", ...)
 }
 \arguments{
   \item{files}{A character vector of at least one file
@@ -28,7 +25,7 @@ temporarily create GenomeStudio-compatible output files, and then run \code{\lin
   file in TXT format.}
 
   \item{detectionTh}{the p-value threshold of determining
-  detectability of the expression. See more details in
+  detectability of the expression.  See more details in
   \code{\link[lumi]{lumiQ}}.}
 
   \item{na.rm}{determine whether to remove NA}
@@ -51,7 +48,7 @@ temporarily create GenomeStudio-compatible output files, and then run \code{\lin
   some messages}
 
   \item{memory}{the maximum amount of memory to use. see
-  \code{\link{read.illumina.idat}}. Default = 'Xmx1024m'}
+  \code{\link{read.illumina.idat}}.  Default = 'Xmx1024m'}
 
   \item{...}{other parameters used by
   \code{\link[utils]{read.table}} function}
@@ -60,6 +57,12 @@ temporarily create GenomeStudio-compatible output files, and then run \code{\lin
   return a LumiBatch object
 }
 \description{
+  This function can decrypt Illumina gene expression iDAT
+  files (aka version 1 iDAT files). It will temporarily
+  create GenomeStudio-compatible output files, and then run
+  \code{\link[lumi]{lumiR}}.
+}
+\details{
   See \code{\link{read.illumina.idat}} for more details on
   Illumina arrays, manifest files, and probeID naming
   options. See \code{\link[lumi]{lumiR}} for more details

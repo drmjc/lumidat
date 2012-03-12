@@ -2,19 +2,28 @@
 \name{lumidat-package}
 \alias{lumidat}
 \alias{lumidat-package}
-\title{Preprocess Illumina Gene Expression iDAT files.
-This package enables the decryption, and preprocessing of lllumina gene expression iDAT files
-(aka version 1 iDAT files). Previously, the only option that Illumina gene expression users
-had was to rely upon a miroarray core facility with access to an Illumina Scanner and a copy of
-Illumina BeadStudio, or GenomeStudio to pre-process the array data. Our intention is to allow
-users to pre-process their probe-level Illumina data using this software, thereby enabling them
-to choose from the collection of sophisticated normalisation and pre-processing procedures, which
-have recently been demonstrated by [1] to simultaneously improve noise and bias,
-via the \eqn{lumi}, or \eqn{limma} pipelines.
-We have made every effort to reproduce the GenomeStudio output [2], down to the Detection P-Value
-calculation, the order of the rows, the background correction procedure, the file headers and
-ProbeID naming, and sample naming.}
+\title{Preprocess Illumina Gene Expression iDAT files.}
 \description{
+  This package enables the decryption, and preprocessing of
+  lllumina gene expression iDAT files (aka version 1 iDAT
+  files). Previously, the only option that Illumina gene
+  expression users had was to rely upon a miroarray core
+  facility with access to an Illumina Scanner and a copy of
+  Illumina BeadStudio, or GenomeStudio to pre-process the
+  array data. Our intention is to allow users to
+  pre-process their probe-level Illumina data using this
+  software, thereby enabling them to choose from the
+  collection of sophisticated normalisation and
+  pre-processing procedures, which have recently been
+  demonstrated by [1] to simultaneously improve noise and
+  bias, via the \eqn{lumi}, or \eqn{limma} pipelines. We
+  have made every effort to reproduce the GenomeStudio
+  output [2], down to the Detection P-Value calculation,
+  the order of the rows, the background correction
+  procedure, the file headers and ProbeID naming, and
+  sample naming.
+}
+\details{
   The bulk of the work is carried out by a Java program,
   which aims to reproduce the behaviour of Illumina
   GenomeStudio, thereby producing \dQuote{Sample Probe
@@ -23,8 +32,7 @@ ProbeID naming, and sample naming.}
   \emph{IlluminaExpressionFileCreator} GenePattern module
   [3], created by the Broad Institute (most of the coding
   done by David Eby).
-}
-\details{
+
   \code{\link{read.illumina.idat}} provides a number of
   options for reading iDAT files, including background
   correction, summarisation at the gene-level. Unlike

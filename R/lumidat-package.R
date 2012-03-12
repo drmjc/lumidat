@@ -1,4 +1,5 @@
 #' Preprocess Illumina Gene Expression iDAT files.
+#' 
 #' This package enables the decryption, and preprocessing of lllumina gene expression iDAT files 
 #' (aka version 1 iDAT files). Previously, the only option that Illumina gene expression users 
 #' had was to rely upon a miroarray core facility with access to an Illumina Scanner and a copy of 
