@@ -135,15 +135,18 @@
   \sQuote{Exception in thread "main"
   java.lang.OutOfMemoryError: Java heap space} Then you
   need to increase the amount of RAM, upto the maximum
-  available in your system.
+  available in your system. If you still get the error,
+  then you need a 64-bit system with lots of RAM.
 }
 
 \section{TODO}{
-  represent manifest files the way that Affymetrix CDF's
-  are (ie in data packages). Import probe-level annotation
-  from the manifest file into the resulting LumiBatch
-  object. Add options for background subtraction. Add
-  options for gene-level summarisation.
+  \itemize{ \item{manifest}{represent manifest files the
+  way that Affymetrix CDF's are (ie in data packages).}
+  \item{annotation}{Import probe-level annotation from the
+  manifest file into the resulting LumiBatch object.}
+  \item{background}{Add options for background
+  subtraction.} \item{gene}{Add options for gene-level
+  summarisation.} }
 }
 \examples{
 path <- system.file("extdata", package="lumidat")

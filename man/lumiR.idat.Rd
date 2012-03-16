@@ -10,6 +10,31 @@
     verbose = TRUE, memory = "-Xmx1024m", ...)
 }
 \arguments{
+  \item{detectionTh}{the p-value threshold of determining
+  detectability of the expression.  See more details in
+  \code{\link[lumi]{lumiQ}}.}
+
+  \item{na.rm}{logical: remove \code{NA}?}
+
+  \item{parseColumnName}{logical: parse the column names
+  and retrieve the sample information? (Assume the sample
+  information is separated by \dQuote{\_}.)}
+
+  \item{checkDupId}{logical: check duplicated TargetIDs or
+  ProbeIds? The duplicated ones will be averaged.}
+
+  \item{QC}{logical:do quality control assessment after
+  read in the data?}
+
+  \item{columnNameGrepPattern}{list of named
+  character(1)'s: the grep patterns used to determine which
+  column name corresponds to which slot. Eg the column
+  named \dQuote{AVG_SIGNAL} will be put into the
+  \code{exprs} slot.}
+
+  \item{\dots}{other parameters used by
+  \code{\link[utils]{read.table}} function}
+
   \item{files}{A character vector of at least one file
   name}
 
@@ -17,44 +42,20 @@
   are. This defaults to the current working directory.}
 
   \item{probeID}{This controls which value to identify each
-  probe by. Allowable values are "ArrayAddressID",
-  "ProbeID", "Sequence", "NuID". See
-  \code{\link{read.illumina.idat}} for more details.}
+  probe by. Allowable values are \dQuote{ArrayAddressID},
+  \dQuote{ProbeID}, \dQuote{Sequence}, \dQuote{NuID}.}
 
   \item{manifestfile}{The full path to the Array manifest
   file in TXT format.}
 
-  \item{detectionTh}{the p-value threshold of determining
-  detectability of the expression.  See more details in
-  \code{\link[lumi]{lumiQ}}.}
+  \item{verbose}{logical, if TRUE, print informative
+  messages}
 
-  \item{na.rm}{determine whether to remove NA}
-
-  \item{parseColumnName}{determine whether to parse the
-  column names and retrieve the sample information (Assume
-  the sample information is separated by "\_".)}
-
-  \item{checkDupId}{determine whether to check duplicated
-  TargetIDs or ProbeIds. The duplicated ones will be
-  averaged.}
-
-  \item{QC}{determine whether to do quality control
-  assessment after read in the data.}
-
-  \item{columnNameGrepPattern}{the string grep patterns
-  used to determine the slot corresponding columns.}
-
-  \item{verbose}{a boolean to decide whether to print out
-  some messages}
-
-  \item{memory}{the maximum amount of memory to use. see
-  \code{\link{read.illumina.idat}}.  Default = 'Xmx1024m'}
-
-  \item{...}{other parameters used by
-  \code{\link[utils]{read.table}} function}
+  \item{memory}{The maximum Java memory heapsize. Default
+  -Xmx1024m, which allows 1GB of RAM.}
 }
 \value{
-  return a LumiBatch object
+  return a \code{\link[lumi]{LumiBatch-class}} object
 }
 \description{
   This function can decrypt Illumina gene expression iDAT
@@ -67,12 +68,6 @@
   Illumina arrays, manifest files, and probeID naming
   options. See \code{\link[lumi]{lumiR}} for more details
   on all paramaters from \eqn{detectionTh} onwards.
-}
-\note{
-  TODO: represent manifest files the way that Affymetrix
-  CDF's are (ie in data packages).\cr TODO: Import
-  probe-level annotation from the manifest file into the
-  resulting LumiBatch object.\cr
 }
 \examples{
 library(lumi)

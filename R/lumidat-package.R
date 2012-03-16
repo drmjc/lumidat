@@ -18,6 +18,7 @@
 #' This Java program is initially based on the \emph{IlluminaExpressionFileCreator} GenePattern module [3], 
 #' created by the Broad Institute (most of the coding done by David Eby).
 #' 
+#' @section Key functions:
 #' \code{\link{read.illumina.idat}} provides a number of options for reading iDAT files, 
 #' including background correction, summarisation at the gene-level. Unlike GenomeStudio, it
 #' provides greater control over how the gene-level summarisation is performed,
@@ -40,8 +41,8 @@
 #' \tabular{ll}{
 #' Package: \tab lumidat\cr
 #' Type: \tab Package\cr
-#' Version: \tab 1.0\cr
-#' Date: \tab 2011-05-25\cr
+#' Version: \tab 1.0.3\cr
+#' Date: \tab 2012-03-16\cr
 #' License: \tab GenePattern license\cr
 #' LazyLoad: \tab yes\cr
 #' }

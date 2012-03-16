@@ -9,20 +9,6 @@
     memory = "-Xmx1024m", ...)
 }
 \arguments{
-  \item{files}{character vector of >= 1 iDAT file name}
-
-  \item{path}{character string giving the directory
-  containing the iDAT files. The default is the current
-  working directory.}
-
-  \item{probeID}{This controls which value to identify each
-  probe by. Allowable values are \dQuote{ArrayAddressID},
-  \dQuote{ProbeID}, \dQuote{Sequence}, \dQuote{NuID}. See
-  \code{\link{read.illumina.idat}} for more details.}
-
-  \item{manifestfile}{The full path to the Array manifest
-  file in TXT format.}
-
   \item{controls}{logical: if TRUE (the default),
   gene-probes and the control-probes will be imported; if
   FALSE, only the gene-probes will be imported. See
@@ -31,25 +17,37 @@
   \item{other.columns}{character vector giving the keywords
   in the names of extra columns required, such as
   "Detection", "Avg_NBEADS", "BEAD_STDEV" etc. Each keyword
-  corresponds to one type of columns. See
+  corresponds to one type of column. See
   \code{\link[limma]{read.ilmn}} for more details.}
 
-  \item{verbose}{logical, \eqn{TRUE} to report names of
-  profile files being read.}
-
-  \item{memory}{the maximum amount of memory to use. see
-  \code{\link{read.illumina.idat}}.}
-
-  \item{...}{any other parameters are passed on to
+  \item{\dots}{any other parameters are passed on to
   \code{\link[limma]{read.columns}}.}
+
+  \item{files}{A character vector of at least one file
+  name}
+
+  \item{path}{The path to the directories where the files
+  are. This defaults to the current working directory.}
+
+  \item{probeID}{This controls which value to identify each
+  probe by. Allowable values are \dQuote{ArrayAddressID},
+  \dQuote{ProbeID}, \dQuote{Sequence}, \dQuote{NuID}.}
+
+  \item{manifestfile}{The full path to the Array manifest
+  file in TXT format.}
+
+  \item{verbose}{logical, if TRUE, print informative
+  messages}
+
+  \item{memory}{The maximum Java memory heapsize. Default
+  -Xmx1024m, which allows 1GB of RAM.}
 }
 \value{
   An \code{\link[limma]{EListRaw-class}} object with the
-  following components: \tabular{ll}{ \code{E} \tab numeric
-  matrix of raw intensities.\cr \code{genes} \tab
-  data.frame of probe annotation.\cr \code{targets} \tab
-  data.frame of sample information.\cr \code{other} \tab
-  list of other column data.\cr }
+  following components: \item{E}{numeric matrix of raw
+  intensities.} \item{genes}{data.frame of probe
+  annotation.} \item{targets}{data.frame of sample
+  information.} \item{other}{list of other column data.}
 }
 \description{
   This function can decrypt Illumina gene expression iDAT

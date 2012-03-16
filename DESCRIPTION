@@ -24,8 +24,8 @@ Description: This package enables the decryption, and
     order of the rows, the background correction procedure
     (which is only applied to gene-probes), the file
     formats and names.
-Version: 1.0.2
-Date: 2012-03-07
+Version: 1.0.3
+Date: 2012-03-16
 Suggests:
     lumi,
     limma

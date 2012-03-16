@@ -8,36 +8,24 @@ NULL
 #'
 #' See \code{\link{read.illumina.idat}} for more details on Illumina arrays, manifest files, and probeID naming options.
 #' See \code{\link[lumi]{lumiR}} for more details on all paramaters from \eqn{detectionTh} onwards.
-#'
-#' @note
-#' TODO: represent manifest files the way that Affymetrix CDF's are (ie in data packages).\cr
-#' TODO: Import probe-level annotation from the manifest file into the resulting LumiBatch object.\cr
-#' @param files A character vector of at least one file name
-#' @param path The path to the directories where the files are. This defaults to the current 
-#' working directory.
-#' @param probeID This controls which value to identify each probe by. Allowable values are 
-#' "ArrayAddressID", "ProbeID", "Sequence", "NuID". See \code{\link{read.illumina.idat}}
-#' for more details.
-#' @param manifestfile The full path to the Array manifest file in TXT format.
+#' 
+#' @inheritParams read.illumina.idat
 #' @param detectionTh the p-value threshold of determining detectability of the expression.
 #'  See more details in \code{\link[lumi]{lumiQ}}.
-#' @param na.rm determine whether to remove NA
-#' @param parseColumnName determine whether to parse the column names and retrieve the sample 
-#' information (Assume the sample information is separated by "\_".)
-#' @param checkDupId determine whether to check duplicated TargetIDs or ProbeIds. The 
+#' @param na.rm logical: remove \code{NA}?
+#' @param parseColumnName logical: parse the column names and retrieve the sample 
+#' information? (Assume the sample information is separated by \dQuote{\_}.)
+#' @param checkDupId logical: check duplicated TargetIDs or ProbeIds? The 
 #' duplicated ones will be averaged.
-#' @param QC determine whether to do quality control assessment after read in the data.
-#' @param columnNameGrepPattern the string grep patterns used to determine the slot 
-#' corresponding columns.
-#' @param verbose a boolean to decide whether to print out some messages
-#' @param memory the maximum amount of memory to use. see \code{\link{read.illumina.idat}}.
-#'   Default = 'Xmx1024m'
-#' @param ... other parameters used by \code{\link[utils]{read.table}} function
+#' @param QC logical:do quality control assessment after read in the data?
+#' @param columnNameGrepPattern list of named character(1)'s: the grep patterns used to 
+#' determine which column name corresponds to which slot. Eg the column named \dQuote{AVG_SIGNAL}
+#' will be put into the \code{exprs} slot.
+#' @param \dots other parameters used by \code{\link[utils]{read.table}} function
 #'
-#' @return return a LumiBatch object
+#' @return return a \code{\link[lumi]{LumiBatch-class}} object
 #' @author Mark Cowley, with contributions from Mark Pinese, David Eby.
-#' @seealso \code{\link{read.illumina.idat}}
-#' \code{\link[lumi]{lumiR}}
+#' @seealso \code{\link{read.illumina.idat}} \code{\link[lumi]{lumiR}}
 #' @export
 #' @examples
 #' library(lumi)

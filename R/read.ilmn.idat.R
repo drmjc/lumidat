@@ -13,29 +13,19 @@ NULL
 #' See \code{\link{read.illumina.idat}} for more details on Illumina arrays, manifest files, and probeID naming options.
 #' See \code{\link[limma]{read.ilmn}} for more details on \sQuote{other.columns} parameter.
 #'
-#' @param files character vector of >= 1 iDAT file name
-#' @param path character string giving the directory containing the iDAT files. The default 
-#' is the current working directory.
-#' @param probeID This controls which value to identify each probe by. Allowable values are 
-#' \dQuote{ArrayAddressID}, \dQuote{ProbeID}, \dQuote{Sequence}, \dQuote{NuID}. See \code{\link{read.illumina.idat}}
-#'  for more details.
-#' @param manifestfile The full path to the Array manifest file in TXT format.
+#' @inheritParams read.illumina.idat
 #' @param controls logical: if TRUE (the default), gene-probes and the control-probes will be
 #'  imported; if FALSE, only the gene-probes will be imported. See 
 #' \code{\link[limma]{read.ilmn}} for more details.
 #' @param other.columns character vector giving the keywords in the names of extra columns 
 #' required, such as "Detection", "Avg_NBEADS", "BEAD_STDEV" etc. Each keyword corresponds 
-#' to one type of columns. See \code{\link[limma]{read.ilmn}} for more details.
-#' @param verbose logical, \eqn{TRUE} to report names of profile files being read.
-#' @param memory the maximum amount of memory to use. see \code{\link{read.illumina.idat}}.
-#' @param ... any other parameters are passed on to \code{\link[limma]{read.columns}}.
+#' to one type of column. See \code{\link[limma]{read.ilmn}} for more details.
+#' @param \dots any other parameters are passed on to \code{\link[limma]{read.columns}}.
 #' @return An \code{\link[limma]{EListRaw-class}} object with the following components:
-#' \tabular{ll}{
-#' \code{E} \tab numeric matrix of raw intensities.\cr
-#' \code{genes} \tab data.frame of probe annotation.\cr
-#' \code{targets} \tab data.frame of sample information.\cr
-#' \code{other} \tab list of other column data.\cr
-#' }
+#' \item{E}{numeric matrix of raw intensities.}
+#' \item{genes}{data.frame of probe annotation.}
+#' \item{targets}{data.frame of sample information.}
+#' \item{other}{list of other column data.}
 #' @seealso \code{\link[limma]{read.ilmn}}, \code{\link{read.illumina.idat}}
 #' @export
 #' @author Mark Cowley \email{m.cowley@@garvan.org.au}
