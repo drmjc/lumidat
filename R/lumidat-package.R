@@ -7,7 +7,7 @@
 #' users to pre-process their probe-level Illumina data using this software, thereby enabling them 
 #' to choose from the collection of sophisticated normalisation and pre-processing procedures, which 
 #' have recently been demonstrated by [1] to simultaneously improve noise and bias, 
-#' via the \eqn{lumi}, or \eqn{limma} pipelines. 
+#' via the \code{lumi}, or \code{limma} pipelines. 
 #' We have made every effort to reproduce the GenomeStudio output [2], down to the Detection P-Value
 #' calculation, the order of the rows, the background correction procedure, the file headers and
 #' ProbeID naming, and sample naming.
@@ -19,7 +19,7 @@
 #' created by the Broad Institute (most of the coding done by David Eby).
 #' 
 #' @section Key functions:
-#' \code{\link{read.illumina.idat}} provides a number of options for reading iDAT files, 
+#' \code{\link{preprocess.illumina.idat}} provides a number of options for reading iDAT files, 
 #' including background correction, summarisation at the gene-level. Unlike GenomeStudio, it
 #' provides greater control over how the gene-level summarisation is performed,
 #' and provides a number of different options for naming probes, including NuID [4]. 
@@ -32,22 +32,22 @@
 #' files.
 #' 
 #' This package will NOT read iDAT files from Illumina Infinium SNP arrays (aka Version 3 iDAT files); 
-#' however the \eqn{crlmm} package can read them.
+#' however the \code{crlmm} package can read them.
 #' 
 #' Array manifest files are required, and can be downloaded from Illumina [5], [6]. These files 
 #'  describe each of the probes on the array, including the probe sequence, as well as probe-level
-#'  annotations. See \code{\link{read.illumina.idat}} for more info.
+#'  annotations. See \code{\link{preprocess.illumina.idat}} for more info.
 #'
 #' \tabular{ll}{
 #' Package: \tab lumidat\cr
 #' Type: \tab Package\cr
-#' Version: \tab 1.0.3\cr
-#' Date: \tab 2012-03-16\cr
+#' Version: \tab \Sexpr[stage=build]{packageDescription("lumidat")$Version}\cr
+#' Date: \tab \Sexpr[stage=build]{format(Sys.time(), "\%Y-\%m-\%d")}\cr
 #' License: \tab GenePattern license\cr
 #' LazyLoad: \tab yes\cr
 #' }
 #'
-#' @seealso \code{\link{read.illumina.idat}}, R\code{\link{lumiR.idat}}, \code{\link[limma]{read.ilmn}}
+#' @seealso \code{\link{preprocess.illumina.idat}}, R\code{\link{lumiR.idat}}, \code{\link[limma]{read.ilmn}}
 #'
 #' @name lumidat-package
 #' @aliases lumidat

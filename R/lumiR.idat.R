@@ -1,4 +1,4 @@
-#' @include read.illumina.idat.R
+#' @include preprocess.illumina.idat.R
 NULL
 
 #' Read Illumina gene expression iDAT files.
@@ -6,10 +6,10 @@ NULL
 #' This function can decrypt Illumina gene expression iDAT files (aka version 1 iDAT files). It will
 #' temporarily create GenomeStudio-compatible output files, and then run \code{\link[lumi]{lumiR}}.
 #'
-#' See \code{\link{read.illumina.idat}} for more details on Illumina arrays, manifest files, and probeID naming options.
-#' See \code{\link[lumi]{lumiR}} for more details on all paramaters from \eqn{detectionTh} onwards.
+#' See \code{\link{preprocess.illumina.idat}} for more details on Illumina arrays, manifest files, and probeID naming options.
+#' See \code{\link[lumi]{lumiR}} for more details on all paramaters from \code{detectionTh} onwards.
 #' 
-#' @inheritParams read.illumina.idat
+#' @inheritParams preprocess.illumina.idat
 #' @param detectionTh the p-value threshold of determining detectability of the expression.
 #'  See more details in \code{\link[lumi]{lumiQ}}.
 #' @param na.rm logical: remove \code{NA}?
@@ -25,8 +25,10 @@ NULL
 #'
 #' @return return a \code{\link[lumi]{LumiBatch-class}} object
 #' @author Mark Cowley, with contributions from Mark Pinese, David Eby.
-#' @seealso \code{\link{read.illumina.idat}} \code{\link[lumi]{lumiR}}
+#' @seealso \code{\link{preprocess.illumina.idat}} \code{\link[lumi]{lumiR}}
 #' @export
+#' @importFrom lumi lumiR
+#' @importClassesFrom lumi LumiBatch
 #' @examples
 #' library(lumi)
 #' path <- system.file("extdata", package="lumidat")
@@ -39,14 +41,13 @@ lumiR.idat <- function(files=NULL, path=NULL, probeID=c("ArrayAddressID", "Probe
   detectionTh=0.01, na.rm=TRUE, parseColumnName=FALSE, checkDupId=TRUE, QC=TRUE, 
   columnNameGrepPattern=list(exprs='AVG_SIGNAL', se.exprs='BEAD_STD', detection='DETECTION', beadNum='Avg_NBEADS'), 
   verbose=TRUE, memory="-Xmx1024m", ...) {
-	require(lumi)
 	
 	outdir <-  tempdir()
-	files <- read.illumina.idat(files=files, path=path, probeID=probeID, manifestfile=manifestfile, outdir=outdir, verbose=verbose, collapseMode="none", prefix=NULL, backgroundCorrect=FALSE, memory=memory)
+	files <- preprocess.illumina.idat(files=files, path=path, probeID=probeID, manifestfile=manifestfile, outdir=outdir, verbose=verbose, collapseMode="none", prefix=NULL, backgroundCorrect=FALSE, memory=memory)
 	# files[1] = "<dir>/Sample Probe Profile.txt", files[2] = "<dir>/Control Probe Profile.txt"
 	on.exit(unlink(files))	
 
-	if(!file.exists(files[1])) stop("Error occurred during read.illumina.idat.")
+	if(!file.exists(files[1])) stop("Error occurred during preprocess.illumina.idat.")
 	
 	# execute the normal lumiR function from the 'lumi' package
 	result <- lumiR(files[1], detectionTh=detectionTh, na.rm=na.rm, convertNuID=FALSE, lib.mapping=NULL, dec='.', parseColumnName=parseColumnName, checkDupId=checkDupId, QC=QC, columnNameGrepPattern=columnNameGrepPattern, inputAnnotation=FALSE, annotationColumn="SYMBOL", verbose=verbose, ...)

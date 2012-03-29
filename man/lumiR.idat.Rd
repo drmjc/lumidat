@@ -64,10 +64,11 @@
   \code{\link[lumi]{lumiR}}.
 }
 \details{
-  See \code{\link{read.illumina.idat}} for more details on
-  Illumina arrays, manifest files, and probeID naming
-  options. See \code{\link[lumi]{lumiR}} for more details
-  on all paramaters from \eqn{detectionTh} onwards.
+  See \code{\link{preprocess.illumina.idat}} for more
+  details on Illumina arrays, manifest files, and probeID
+  naming options. See \code{\link[lumi]{lumiR}} for more
+  details on all paramaters from \code{detectionTh}
+  onwards.
 }
 \examples{
 library(lumi)
@@ -82,7 +83,7 @@ res
   Eby.
 }
 \seealso{
-  \code{\link{read.illumina.idat}}
+  \code{\link{preprocess.illumina.idat}}
   \code{\link[lumi]{lumiR}}
 }
 

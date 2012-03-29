@@ -56,14 +56,14 @@
   \code{\link[limma]{read.ilmn}}.
 }
 \details{
-  If \eqn{controls=TRUE}, then both the gene-probes, and
+  If \code{controls=TRUE}, then both the gene-probes, and
   the control-probes will be imported into an
   \code{\link[limma]{EListRaw-class}} object.
 
-  See \code{\link{read.illumina.idat}} for more details on
-  Illumina arrays, manifest files, and probeID naming
-  options. See \code{\link[limma]{read.ilmn}} for more
-  details on \sQuote{other.columns} parameter.
+  See \code{\link{preprocess.illumina.idat}} for more
+  details on Illumina arrays, manifest files, and probeID
+  naming options. See \code{\link[limma]{read.ilmn}} for
+  more details on \sQuote{other.columns} parameter.
 }
 \examples{
 path <- system.file("extdata", package="lumidat")
@@ -76,6 +76,6 @@ res <- read.ilmn.idat(files, path, manifestfile, probeID="NuID", controls=TRUE)
 }
 \seealso{
   \code{\link[limma]{read.ilmn}},
-  \code{\link{read.illumina.idat}}
+  \code{\link{preprocess.illumina.idat}}
 }
 
