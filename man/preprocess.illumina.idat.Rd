@@ -1,8 +1,8 @@
-\name{read.illumina.idat}
-\alias{read.illumina.idat}
+\name{preprocess.illumina.idat}
+\alias{preprocess.illumina.idat}
 \title{Preprocess Illumina gene expression iDAT files.}
 \usage{
-  read.illumina.idat(files = NULL, path = NULL,
+  preprocess.illumina.idat(files = NULL, path = NULL,
     manifestfile = NULL,
     probeID = c("ArrayAddressID", "ProbeID", "Sequence", "NuID"),
     collapseMode = c("none", "max", "median", "mean"),
@@ -33,7 +33,7 @@
   FALSE, do no correction.}
 
   \item{outdir}{The full path to the output directory. If
-  \eqn{NULL} the current working directory is used.}
+  \code{NULL} the current working directory is used.}
 
   \item{prefix}{An character[1] used as a file name prefix
   for the files that will be created.  \dQuote{NONE} (the
@@ -57,7 +57,7 @@
 \description{
   This function can decrypt Illumina gene expression iDAT
   files (aka version 1 iDAT files). It will create
-  \eqn{Sample Probe Profile.txt} and \eqn{Control Probe
+  \code{Sample Probe Profile.txt} and \code{Control Probe
   Profile.txt} files, similar to Illumina GenomeStudio
   version 1.8.0 [1]. We have made every effort to reproduce
   the GenomeStudio output, down to the Detection P-Value
@@ -73,8 +73,8 @@
   BGX version. You can use a newer release of the manifest
   file as long as you get the right array type. For
   example, HumanHT-12_V3 arrays can use the
-  \eqn{HumanHT-12_V3_0_R2_11283641_A.txt} or
-  \eqn{HumanHT-12_V3_0_R3_11283641_A.txt} manifest files.
+  \code{HumanHT-12_V3_0_R2_11283641_A.txt} or
+  \code{HumanHT-12_V3_0_R3_11283641_A.txt} manifest files.
 }
 
 \section{Probe naming}{
@@ -85,7 +85,7 @@
   Probe_Sequence, or the NuID [3]. Illumina's GenomeStudio
   uses the ArrayAddressID in the ProbeID column; I think
   the Probe_ID or NuID are better alternatives. If you
-  choose \eqn{NuID}, note that unlike
+  choose \code{NuID}, note that unlike
   \code{\link[lumi]{addNuID2lumi}}, which uses pre-built
   mapping tables, we calculate NuID's directly from the
   probe sequences within the manifest file.
@@ -153,7 +153,7 @@ path <- system.file("extdata", package="lumidat")
 outdir <- tempdir()
 files <- c("5356583020_A_Grn.idat", "5356583020_B_Grn.idat")
 manifestfile <- system.file("extdata", "HumanHT-12_V3_0_R1_99999999.txt", package="lumidat")
-files <- read.illumina.idat(files, path, manifestfile, probeID="NuID", outdir=outdir)
+files <- preprocess.illumina.idat(files, path, manifestfile, probeID="NuID", outdir=outdir)
 files
 }
 \author{
