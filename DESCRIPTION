@@ -24,14 +24,16 @@ Description: This package enables the decryption, and
     order of the rows, the background correction procedure
     (which is only applied to gene-probes), the file
     formats and names.
-Version: 1.0.3
-Date: 2012-03-16
-Suggests:
+Version: 1.0.4
+Date: 2012-03-29
+Imports:
+    Biobase,
     lumi,
     limma
 Collate:
     'lumidat-package.R'
-    'read.illumina.idat.R'
+    'preprocess.illumina.idat.R'
     'lumiR.idat.R'
     'read.illumina.manifest.R'
     'read.ilmn.idat.R'
+    'LumiBatch2GEOarchive.R'
