@@ -5,7 +5,7 @@
 #' Briefly, you need both the unnormalised, and normalised data, both
 #' of which must include the expression level, and detection p-val for 
 #' each probe, using ILMN_ -style probe ID's.
-#' \code{LumiBatch} objects conform to thus style already.
+#' \code{LumiBatch} objects conform to this style already.
 #' 
 #' @section Probe naming:
 #' Due to there being a number of different naming conventions for Illumina 
@@ -26,7 +26,7 @@
 #' argument to be a character vector of probe ID's. You can also use \code{ids} to
 #' specify a subset of probes to report. In addition, \code{ids} may contain probes
 #' that are not present in \code{featureNames(x)}; in this case these probes
-#' will be in effect added to 'x', and exported as \code{\dQuote{null}}'s.
+#' will be in effect added to \code{x}, and exported as \code{\dQuote{null}}'s.
 #' Yes, this is a bit of a hack, because it's hard to add missing probes to
 #' a LumiBatch object retrospectively.
 #' 
@@ -82,6 +82,7 @@ LumiBatch2GEOarchive <- function(x, file, ids=NULL, round.digits=5) {
 		dat <- round(dat, digits=round.digits)
 		pval <- round(pval, digits=round.digits)
 	}
+	
 	# collate these data, sample 1, pval, sample 2, pval, ..., sample N, pval
 	res <- data.frame(ID_REF=ids, matrix(NA, nrow=nrow(dat), ncol=ncol(dat)*2))
 	res[seq(2,ncol(res),by=2)] <- dat
