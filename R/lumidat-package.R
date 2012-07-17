@@ -26,8 +26,9 @@
 #'
 #' \code{\link{lumiR.idat}} provides a 
 #' replacement for \code{\link[lumi]{lumiR}}, and allows users to use the \emph{lumi} pipeline starting 
-#' with iDAT files. \code{\link{read.ilmn.idat}} provides a replacement for 
-#'
+#' with iDAT files.
+#' 
+#' \code{\link{read.ilmn.idat}} provides a replacement for 
 #' \code{\link[limma]{read.ilmn}}, and allows users to use the \emph{limma} pipeline starting with iDAT 
 #' files.
 #' 
