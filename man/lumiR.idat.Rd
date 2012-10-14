@@ -11,7 +11,7 @@
     detectionTh = 0.01, na.rm = TRUE,
     parseColumnName = FALSE, checkDupId = TRUE, QC = TRUE,
     columnNameGrepPattern = list(exprs = "AVG_SIGNAL", se.exprs = "BEAD_STD", detection = "DETECTION", beadNum = "Avg_NBEADS"),
-    verbose = TRUE, memory = "-Xmx1024m", ...)
+    verbose = FALSE, memory = "-Xmx1024m", ...)
 }
 \arguments{
   \item{controls}{logical: if \code{TRUE}, the controlData
@@ -125,7 +125,7 @@ path <- system.file("extdata", package="lumidat")
 files <- c("5356583020_A_Grn.idat", "5356583020_B_Grn.idat")
 manifestfile <- system.file("extdata", "HumanHT-12_V3_0_R1_99999999.txt", package="lumidat")
 zipfile <- tempfile(fileext=".zip")
-zip(zipfile, file.path(path, files))
+zip(zipfile, file.path(path, files), flags="-r9Xq")
 res <- lumiR.idat(zipfile=zipfile, manifestfile=manifestfile, probeID="ProbeID", verbose=FALSE)
 res
 
@@ -134,6 +134,11 @@ clmfile <- system.file("extdata", "5356583020.clm", package="lumidat")
 res <- lumiR.idat(zipfile=zipfile, manifestfile=manifestfile, probeID="ProbeID", verbose=FALSE, clmfile=clmfile)
 sampleNames(res)
 # [1] "A" "B"
+
+\dontrun{
+# Get the Human HT12 V4 manifest file:
+manifestfile <- download_illumina_manifest_file("HumanHT-12_V4_0_R2_15002873_B", "txt")
+}
 }
 \author{
   Mark Cowley, with contributions from Mark Pinese, David

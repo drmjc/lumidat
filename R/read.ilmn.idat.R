@@ -4,7 +4,7 @@ NULL
 #' Read Illumina gene expression iDAT files.
 #' 
 #' This function can decrypt Illumina gene expression iDAT files (aka version 1 iDAT files). 
-#' It will temporarily create GenomeStudio-compatible output files using \code{\link{preprocess.illumina.idat.R}},
+#' It will temporarily create GenomeStudio-compatible output files using \code{\link{preprocess.illumina.idat}},
 #' and then run \code{\link[limma]{read.ilmn}}.
 #' 
 #' \code{limma::read.ilmn} allows you control over importing the control data via the \code{ctrlpath} parameter.
@@ -57,15 +57,22 @@ NULL
 #' files <- c("5356583020_A_Grn.idat", "5356583020_B_Grn.idat")
 #' manifestfile <- system.file("extdata", "HumanHT-12_V3_0_R1_99999999.txt", package="lumidat")
 #' zipfile <- tempfile(fileext=".zip")
-#' zip(zipfile, file.path(path, files))
+#' zip(zipfile, file.path(path, files), flags="-r9Xq")
 #' res <- read.ilmn.idat(zipfile=zipfile, manifestfile=manifestfile, probeID="ProbeID", controls=FALSE)
 #' res
 #' 
 #' # clm file
 #' clmfile <- system.file("extdata", "5356583020.clm", package="lumidat")
 #' res <- read.ilmn.idat(zipfile=zipfile, manifestfile=manifestfile, probeID="ProbeID", controls=FALSE, clmfile=clmfile)
-#' sampleNames(res)
-#' # [1] "A" "B"
+#' res$targets
+#' #    SampleNames
+#' # 1            A
+#' # 2            B
+#' 
+#' \dontrun{
+#' # Get the Human HT12 V4 manifest file:
+#' manifestfile <- download_illumina_manifest_file("HumanHT-12_V4_0_R2_15002873_B", "txt")
+#' }
 #' 
 read.ilmn.idat <- function (
 	# preprocess.illumina.idat arguments:
@@ -77,7 +84,7 @@ read.ilmn.idat <- function (
 	# limma::read.ilmn arguments
 	expr="AVG_Signal", other.columns="Detection", 
 	# preprocess.illumina.idat arguments:
-	verbose=TRUE, memory="-Xmx1024m", ...) {
+	verbose=FALSE, memory="-Xmx1024m", ...) {
 
 	collapseMode <- match.arg(collapseMode)
 	probeID <- match.arg(probeID)
