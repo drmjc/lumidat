@@ -4,7 +4,10 @@
 #'
 #' @param all logical: if \code{TRUE}, then report all current and archived manifest names;
 #'  default=\code{FALSE}, where only the current manifest names are reported
+#' @param verbose logical: if \code{TRUE} prints info when downloading the HTML pages from Illumina.
+#' 
 #' @return a character vector of manifest names
+#' 
 #' @author Mark Cowley, 2012-10-14
 #' @export
 #' @seealso \code{\link{download_illumina_manifest_file}}

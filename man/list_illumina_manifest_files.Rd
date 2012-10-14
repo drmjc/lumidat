@@ -10,6 +10,9 @@
   current and archived manifest names;
   default=\code{FALSE}, where only the current manifest
   names are reported}
+
+  \item{verbose}{logical: if \code{TRUE} prints info when
+  downloading the HTML pages from Illumina.}
 }
 \value{
   a character vector of manifest names
