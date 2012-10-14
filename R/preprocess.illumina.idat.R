@@ -124,7 +124,7 @@
 #' path <- system.file("extdata", package="lumidat")
 #' files <- c("5356583020_A_Grn.idat", "5356583020_B_Grn.idat")
 #' zipfile <- tempfile(fileext=".zip")
-#' zip(zipfile, file.path(path, files))
+#' zip(zipfile, file.path(path, files), flags="-r9Xq")
 #' files <- preprocess.illumina.idat(zipfile=zipfile, manifestfile=manifestfile, probeID="NuID", outdir=outdir)
 #' files
 #' 
@@ -138,6 +138,11 @@
 #' readLines(files[2], 2)
 #' # [1] "TargetID\tProbeID\tA.AVG_Signal\tA.BEAD_STDERR\tA.Avg_NBEADS\tA.Detection Pval\tB.AVG_Signal\tB.BEAD_STDERR\tB.Avg_NBEADS\tB.Detection Pval"
 #' # [2] "biotin\t0gwIEN5441dbo3j27A\t16902.39\t5062.077\t85\t1.0000000\t16668.27\t6532.465\t60\t1.0000000"
+#' 
+#' \dontrun{
+#' # Get the Human HT12 V4 manifest file:
+#' manifestfile <- download_illumina_manifest_file("HumanHT-12_V4_0_R2_15002873_B", "txt")
+#' }
 #' 
 preprocess.illumina.idat <- function(files=NULL, path=NULL, zipfile=NULL, manifestfile=NULL, clmfile=NULL,
 	probeID=c("ProbeID", "ArrayAddressID", "Sequence", "NuID"), 

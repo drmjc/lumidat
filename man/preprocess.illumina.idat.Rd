@@ -201,6 +201,11 @@ files <- preprocess.illumina.idat(files, path, manifestfile=manifestfile, clmfil
 readLines(files[2], 2)
 # [1] "TargetID\\tProbeID\\tA.AVG_Signal\\tA.BEAD_STDERR\\tA.Avg_NBEADS\\tA.Detection Pval\\tB.AVG_Signal\\tB.BEAD_STDERR\\tB.Avg_NBEADS\\tB.Detection Pval"
 # [2] "biotin\\t0gwIEN5441dbo3j27A\\t16902.39\\t5062.077\\t85\\t1.0000000\\t16668.27\\t6532.465\\t60\\t1.0000000"
+
+\dontrun{
+# Get the Human HT12 V4 manifest file:
+manifestfile <- download_illumina_manifest_file("HumanHT-12_V4_0_R2_15002873_B", "txt")
+}
 }
 \author{
   Mark Cowley \email{m.cowley@garvan.org.au}, with
