@@ -18,22 +18,29 @@ Description: This package enables the decryption, and
     sophisticated normalisation and pre-processing
     procedures, which have recently been demonstrated by
     Shi et al, 2010 to simultaneously improve noise and
-    bias, via the \eqn{lumi}, or \eqn{limma} pipelines. We
+    bias, via the \emph{lumi}, or \emph{limma} pipelines. We
     have made every effort to reproduce the GenomeStudio
     output, down to the Detection P-Value calculation, the
     order of the rows, the background correction procedure
     (which is only applied to gene-probes), the file
     formats and names.
-Version: 1.0.4
-Date: 2012-03-29
+Version: 1.0.5
+Date: 2012-10-14
+Depends:
+    Biobase
 Imports:
-    Biobase,
-    lumi,
-    limma
+    limma,
+    lumi
+Enhances: limma,
+    lumi
+Suggests:
+    testthat
+OS_type: unix
 Collate:
     'lumidat-package.R'
     'preprocess.illumina.idat.R'
     'lumiR.idat.R'
     'read.illumina.manifest.R'
     'read.ilmn.idat.R'
-    'LumiBatch2GEOarchive.R'
+    'download_illumina_manifest_file.R'
+    'list_illumina_manifest_files.R'
