@@ -53,16 +53,16 @@ download_illumina_manifest_file <- function(array.name, type=c("txt", "bgx"), di
 	is.dir <- function(path) {
 	    return( !is.na(file.info(path)$isdir) & file.info(path)$isdir )
 	}
-	is.dir(dir) || die("dir must exist, and must be a directory name")
+	is.dir(dir) || stop("dir must exist, and must be a directory name")
 	
 	manifest.table <- .parse_illumina_manifest_html(verbose)
 	array.name %in% manifest.table$Name || stop(array.name, "not found in the manifest table. see ?list_illumina_manifest_files")
-	manifest.table <- subset(manifest.table, Name == array.name, drop=FALSE)
-	nrow(manifest.table) == 1 || die("Multiple URL's found for", array.name)
+	manifest.table <- subset(manifest.table, manifest.table$Name == array.name, drop=FALSE)
+	nrow(manifest.table) == 1 || stop("Multiple URL's found for", array.name)
 	
 	url <- if(type == "txt") manifest.table$TXT else manifest.table$BGX
 	destfile.zip <- file.path(dir, basename(url))
-	download.file(url, destfile.zip) == 0 || die("download of manifest file failed:", url)
+	download.file(url, destfile.zip) == 0 || stop("download of manifest file failed:", url)
 	destfile <- unzip(destfile.zip, exdir=dir)
 	unlink(destfile.zip)
 	
@@ -94,11 +94,11 @@ download_illumina_manifest_file <- function(array.name, type=c("txt", "bgx"), di
 # url.previous <- "http://www.switchtoi.com/annotationprevfiles.ilmn"
 # .parse_illumina_manifest_html_array_url(url.current)
 .parse_illumina_manifest_html_array_url <- function(url, verbose=FALSE) {
-	capabilities("http/ftp") || die("http capabilities are required")
+	capabilities("http/ftp") || stop("http capabilities are required")
 	stopifnot(length(url) == 1)
 	
 	f <- tempfile(pattern=basename(url))
-	download.file(url, f, quiet=!verbose) == 0 || die("failed to download URL")
+	download.file(url, f, quiet=!verbose) == 0 || stop("failed to download URL")
 	a <- readLines(f)
 	a <- grep("Text Version", a, value=T)
 
