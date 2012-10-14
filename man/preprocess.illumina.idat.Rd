@@ -3,11 +3,11 @@
 \title{Preprocess Illumina gene expression iDAT files.}
 \usage{
   preprocess.illumina.idat(files = NULL, path = NULL,
-    manifestfile = NULL,
-    probeID = c("ArrayAddressID", "ProbeID", "Sequence", "NuID"),
+    zipfile = NULL, manifestfile = NULL, clmfile = NULL,
+    probeID = c("ProbeID", "ArrayAddressID", "Sequence", "NuID"),
     collapseMode = c("none", "max", "median", "mean"),
     backgroundCorrect = FALSE, outdir = NULL,
-    prefix = NULL, verbose = TRUE, memory = "-Xmx1024m")
+    prefix = NULL, verbose = FALSE, memory = "-Xmx1024m")
 }
 \arguments{
   \item{files}{A character vector of at least one file
@@ -16,8 +16,22 @@
   \item{path}{The path to the directories where the files
   are. This defaults to the current working directory.}
 
+  \item{zipfile}{the path to a zip file containing idat
+  files. This over-rides the \code{files} argument.}
+
   \item{manifestfile}{The full path to the Array manifest
-  file in TXT format.}
+  file in TXT format. See
+  \code{\link{list_illumina_manifest_files}} and then
+  \code{\link{download_illumina_manifest_file}} to download
+  manifest files directly from Illumina.}
+
+  \item{clmfile}{\code{NULL}, or the path to a
+  GenePattern-CLM file [5]. This represents a mechanism for
+  renaming, and reordering the samples in the resulting
+  object. Column 1 is the idat name (not path), Column 2 is
+  the desired sample name, column 3 is the biological class
+  of each sample. The order of the rows specifies the order
+  of the samples in the result.}
 
   \item{probeID}{This controls which value to identify each
   probe by. Allowable values are \dQuote{ArrayAddressID},
@@ -39,7 +53,7 @@
   for the files that will be created.  \dQuote{NONE} (the
   default) means no prefix will be used.}
 
-  \item{verbose}{logical, if TRUE, print informative
+  \item{verbose}{logical, if \code{TRUE}, print informative
   messages}
 
   \item{memory}{The maximum Java memory heapsize. Default
@@ -67,6 +81,18 @@
   naming, however we cannot guarantee that the output will
   be identical to that produced by GenomeStudio.
 }
+\section{Reading iDAT files}{
+  iDAT files can be specified in 3 main ways, either as a
+  character vector of file paths, via the \code{files}
+  parameter; (2) a character vector of filenames, and the
+  path to the directy containing the files via \code{files}
+  and \code{path} arguments; (3) via a single zip file
+  containing iDAT files, via the \code{zipfile} argument.
+  The zip file may contain subfolders, though each array
+  should have a unique name, regardless of where it sits in
+  the zipfile structure.
+}
+
 \section{Array manifest files}{
   Array manifest files can be downloaded from Illumina
   [2,3]. It is important to use the TXT version, not the
@@ -100,7 +126,7 @@
   Probe Profile.txt files} \item{\dQuote{max}}{Choose the
   probe with the highest AVG_Intensity value}
   \item{\dQuote{median}}{Choose the probe with the median
-  AVG_Intensity value} \item{\dQuote{mean}}{Determing the
+  AVG_Intensity value} \item{\dQuote{mean}}{Determine the
   mean fluorescence across all probes} } Choosing either
   \dQuote{max}, \dQuote{median} or \dQuote{mean} creates
   \dQuote{Sample Gene Profile.txt} and \dQuote{Control Gene
@@ -149,12 +175,32 @@
   summarisation.} }
 }
 \examples{
+# iDAT files+path as input
 path <- system.file("extdata", package="lumidat")
 outdir <- tempdir()
 files <- c("5356583020_A_Grn.idat", "5356583020_B_Grn.idat")
 manifestfile <- system.file("extdata", "HumanHT-12_V3_0_R1_99999999.txt", package="lumidat")
-files <- preprocess.illumina.idat(files, path, manifestfile, probeID="NuID", outdir=outdir)
+files <- preprocess.illumina.idat(files, path, manifestfile=manifestfile, probeID="NuID", outdir=outdir)
 files
+
+# zipfile as input
+path <- system.file("extdata", package="lumidat")
+files <- c("5356583020_A_Grn.idat", "5356583020_B_Grn.idat")
+zipfile <- tempfile(fileext=".zip")
+zip(zipfile, file.path(path, files))
+files <- preprocess.illumina.idat(zipfile=zipfile, manifestfile=manifestfile, probeID="NuID", outdir=outdir)
+files
+
+# CLM file
+path <- system.file("extdata", package="lumidat")
+outdir <- tempdir()
+files <- c("5356583020_A_Grn.idat", "5356583020_B_Grn.idat")
+manifestfile <- system.file("extdata", "HumanHT-12_V3_0_R1_99999999.txt", package="lumidat")
+clmfile <- system.file("extdata", "5356583020.clm", package="lumidat")
+files <- preprocess.illumina.idat(files, path, manifestfile=manifestfile, clmfile=clmfile, probeID="NuID", outdir=outdir)
+readLines(files[2], 2)
+# [1] "TargetID\\tProbeID\\tA.AVG_Signal\\tA.BEAD_STDERR\\tA.Avg_NBEADS\\tA.Detection Pval\\tB.AVG_Signal\\tB.BEAD_STDERR\\tB.Avg_NBEADS\\tB.Detection Pval"
+# [2] "biotin\\t0gwIEN5441dbo3j27A\\t16902.39\\t5062.077\\t85\\t1.0000000\\t16668.27\\t6532.465\\t60\\t1.0000000"
 }
 \author{
   Mark Cowley \email{m.cowley@garvan.org.au}, with
@@ -169,6 +215,7 @@ files
   \cr [4] Du, P., Kibbe, W. A., & Lin, S. M. (2007). nuID:
   a universal naming scheme of oligonucleotides for
   illumina, affymetrix, and other microarrays Biol Direct,
-  2, 16. (doi:10.1186/1745-6150-2-16) \cr
+  2, 16. (doi:10.1186/1745-6150-2-16) \cr [5]
+  \url{http://www.broadinstitute.org/cancer/software/genepattern/tutorial/gp_fileformats.html#CLM}
 }
 
