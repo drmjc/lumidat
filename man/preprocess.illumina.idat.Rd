@@ -56,8 +56,9 @@
   \item{verbose}{logical, if \code{TRUE}, print informative
   messages}
 
-  \item{memory}{The maximum Java memory heapsize. Default
-  -Xmx1024m, which allows 1GB of RAM.}
+  \item{memory}{The maximum Java memory heapsize. eg:
+  "-Xmx1024m", or "-Xmx4g", which reserves 1GB or 4G of
+  RAM, respectively. default="-Xmx1024m"}
 }
 \value{
   If collapseMode=\dQuote{NONE}, then invisbly return a
@@ -162,7 +163,9 @@
   java.lang.OutOfMemoryError: Java heap space} Then you
   need to increase the amount of RAM, upto the maximum
   available in your system. If you still get the error,
-  then you need a 64-bit system with lots of RAM.
+  then you need a 64-bit system with lots of RAM.\cr For
+  Human HT12 arrays, the amount of RAM required is
+  approximately 333MB RAM + 19MB per array.
 }
 
 \section{TODO}{
@@ -170,9 +173,7 @@
   way that Affymetrix CDF's are (ie in data packages).}
   \item{annotation}{Import probe-level annotation from the
   manifest file into the resulting LumiBatch object.}
-  \item{background}{Add options for background
-  subtraction.} \item{gene}{Add options for gene-level
-  summarisation.} }
+  \item{gene}{Add options for gene-level summarisation.} }
 }
 \examples{
 # iDAT files+path as input
@@ -187,7 +188,7 @@ files
 path <- system.file("extdata", package="lumidat")
 files <- c("5356583020_A_Grn.idat", "5356583020_B_Grn.idat")
 zipfile <- tempfile(fileext=".zip")
-zip(zipfile, file.path(path, files))
+zip(zipfile, file.path(path, files), flags="-r9Xq")
 files <- preprocess.illumina.idat(zipfile=zipfile, manifestfile=manifestfile, probeID="NuID", outdir=outdir)
 files
 

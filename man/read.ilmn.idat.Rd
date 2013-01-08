@@ -72,8 +72,9 @@
   \item{verbose}{logical, if \code{TRUE}, print informative
   messages}
 
-  \item{memory}{The maximum Java memory heapsize. Default
-  -Xmx1024m, which allows 1GB of RAM.}
+  \item{memory}{The maximum Java memory heapsize. eg:
+  "-Xmx1024m", or "-Xmx4g", which reserves 1GB or 4G of
+  RAM, respectively. default="-Xmx1024m"}
 }
 \value{
   An \code{\link[limma]{EListRaw-class}} object with the
