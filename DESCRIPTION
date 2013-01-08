@@ -6,10 +6,10 @@ Title: Methods for importing Illumina gene expression iDAT
 Type: Package
 Author: Mark Cowley
 Description: This package enables the decryption, and
-    preprocessing of lllumina gene expression iDAT files
+    preprocessing of Illumina gene expression iDAT files
     (aka version 1 iDAT files). Previously, the only option
     that Illumina gene expression customers had was to rely
-    upon a miroarray core facility with access to an
+    upon a microarray core facility with access to an
     Illumina Scanner and a copy of Illumina BeadStudio, or
     GenomeStudio to pre-process the array data. Our
     intention is to allow users to pre-process their
@@ -24,8 +24,8 @@ Description: This package enables the decryption, and
     order of the rows, the background correction procedure
     (which is only applied to gene-probes), the file
     formats and names.
-Version: 1.0.5
-Date: 2012-10-14
+Version: 1.2.0
+Date: 2013-01-08
 Depends:
     Biobase
 Imports:
