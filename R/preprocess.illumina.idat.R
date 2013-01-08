@@ -64,13 +64,13 @@
 #' 85 Human HT12 arrays using -Xmx2048m. If you get the following error:
 #'     \sQuote{Exception in thread "main" java.lang.OutOfMemoryError: Java heap space}
 #' Then you need to increase the amount of RAM, upto the maximum available in your system. If you 
-#' still get the error, then you need a 64-bit system with lots of RAM.
+#' still get the error, then you need a 64-bit system with lots of RAM.\cr
+#' For Human HT12 arrays, the amount of RAM required is approximately 333MB RAM + 19MB per array.
 #' 
 #' @section TODO:
 #' \itemize{
 #' \item{manifest}{represent manifest files the way that Affymetrix CDF's are (ie in data packages).}
 #' \item{annotation}{Import probe-level annotation from the manifest file into the resulting LumiBatch object.}
-#' \item{background}{Add options for background subtraction.}
 #' \item{gene}{Add options for gene-level summarisation.}
 #' }
 #' 
@@ -95,7 +95,8 @@
 #' @param prefix An character[1] used as a file name prefix for the files that will be created.
 #'    \dQuote{NONE} (the default) means no prefix will be used.
 #' @param verbose logical, if \code{TRUE}, print informative messages
-#' @param memory The maximum Java memory heapsize. Default -Xmx1024m, which allows 1GB of RAM.
+#' @param memory The maximum Java memory heapsize. eg: "-Xmx1024m", or "-Xmx4g", which reserves 1GB or 4G of RAM, respectively.
+#' default="-Xmx1024m"
 #' @return If collapseMode=\dQuote{NONE}, then invisbly return a character[2] containing the 
 #'   file paths of the \dQuote{Sample Probe Profile.txt} and \dQuote{Control Probe Profile.txt}
 #'   files. Otherwise, invisbly return a character[2] containing the 
@@ -207,7 +208,7 @@ preprocess.illumina.idat <- function(files=NULL, path=NULL, zipfile=NULL, manife
 	# Setup the system call
 	# Java stuff
 	nzchar(Sys.which("java")) || stop("Can't find a valid Java")
-	jar <- file.path(.path.package('lumidat'), 'bin', 'IlluminaGeneExpressionIdatReader-1.0.jar')
+	jar <- file.path(.path.package('lumidat'), 'bin', 'lumidat-1.2.jar')
 	file.exists(jar) || stop("Can't find jar.")
 	
 	# setup the command line
@@ -223,14 +224,13 @@ preprocess.illumina.idat <- function(files=NULL, path=NULL, zipfile=NULL, manife
 		clmfileFlag,
 		quietFlag
 	)
-	files2 <- paste(shQuote(files), collapse=" ")
-	cmd <- paste("java", memory, "-jar", jar, flags, files2)
+	cmd <- paste("java", memory, "-jar", jar, flags, "-")
 	# if(verbose) cat(cmd, "\n")
 	####################
 	
 	####################
 	# run the Java command
-	lumidat.log <- system(cmd, intern=TRUE)
+	lumidat.log <- system(cmd, intern=TRUE, input = files)
 	if( length(grep("^Wrote:", lumidat.log)) != 2 ) {
 		cat("Couldn't find the 2 output files. here's the run-time log:\n")
 		cat(lumidat.log)
