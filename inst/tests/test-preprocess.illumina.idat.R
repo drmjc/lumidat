@@ -62,6 +62,86 @@ test_that("iDAT files+path as input", {
 	expect_identical(res, expected.res)
 })
 
+# 2013-01-08: confirmed that this DOES work. it's not worth storing another 2.2MB extdata file just to test this.
+# test_that("iDAT files+path+spaces in filename as input", {
+# 	path <- system.file("extdata", package="lumidat")
+# 	outdir <- tempdir()
+# 	idat.files <- c("5356583020_A_Grn.idat", "5356583020_B_Grn.idat", "my 5356583020_C_Grn.idat")
+# 	manifestfile <- system.file("extdata", "HumanHT-12_V3_0_R1_99999999.txt", package="lumidat")
+# 	files <- preprocess.illumina.idat(idat.files, path, manifestfile=manifestfile, probeID="ProbeID", outdir=outdir)
+# 
+# 	expect_equal(length(files), 2)
+# 	expect_equal(length(grep("Sample Probe Profile.txt", files)), 1)
+# 	expect_equal(length(grep("Control Probe Profile.txt", files)), 1)
+# 	expect_equal(all(file.exists(files)), TRUE)
+# 	
+# 	df <- read.delim(files[1], stringsAsFactors=FALSE, skip=6)
+# 	res <- df[1:6, ]
+# 	expected.res <- structure(list(TargetID = c("AIFM3", "ARHGDIA", "ARID3A", "BIN1", 
+# 	"BTBD10", "C15ORF39"), ProbeID = c("ILMN_1704173", "ILMN_1734742", 
+# 	"ILMN_1670130", "ILMN_2309245", "ILMN_1809344", "ILMN_1793729"
+# 	), MIN_Signal.5356583020_A = c(88.54737, 1171.861, 1086.613, 
+# 	782.6937, 452.9955, 1373.364), AVG_Signal.5356583020_A = c(88.54737, 
+# 	1171.861, 1086.613, 782.6937, 452.9955, 1373.364), MAX_Signal.5356583020_A = c(88.54737, 
+# 	1171.861, 1086.613, 782.6937, 452.9955, 1373.364), NARRAYS.5356583020_A = c(1L, 
+# 	1L, 1L, 1L, 1L, 1L), ARRAY_STDEV.5356583020_A = c(NaN, NaN, NaN, 
+# 	NaN, NaN, NaN), BEAD_STDEV.5356583020_A = c(36.75683, 209.5618, 
+# 	171.5067, 183.8675, 86.37054, 466.5978), Avg_NBEADS.5356583020_A = c(14L, 
+# 	21L, 15L, 17L, 30L, 15L), Detection.5356583020_A = c(0.9866667, 
+# 	1, 1, 1, 1, 1), MIN_Signal.5356583020_B = c(62.09662, 858.2011, 
+# 	958.4333, 563.4199, 522.0789, 1267.783), AVG_Signal.5356583020_B = c(62.09662, 
+# 	858.2011, 958.4333, 563.4199, 522.0789, 1267.783), MAX_Signal.5356583020_B = c(62.09662, 
+# 	858.2011, 958.4333, 563.4199, 522.0789, 1267.783), NARRAYS.5356583020_B = c(1L, 
+# 	1L, 1L, 1L, 1L, 1L), ARRAY_STDEV.5356583020_B = c(NaN, NaN, NaN, 
+# 	NaN, NaN, NaN), BEAD_STDEV.5356583020_B = c(18.05332, 230.0427, 
+# 	121.8764, 156.202, 130.108, 374.7991), Avg_NBEADS.5356583020_B = c(14L, 
+# 	19L, 21L, 19L, 24L, 20L), Detection.5356583020_B = c(0.8666667, 
+# 	1, 1, 1, 1, 1), MIN_Signal.my.5356583020_C = c(62.09662, 858.2011, 
+# 	958.4333, 563.4199, 522.0789, 1267.783), AVG_Signal.my.5356583020_C = c(62.09662, 
+# 	858.2011, 958.4333, 563.4199, 522.0789, 1267.783), MAX_Signal.my.5356583020_C = c(62.09662, 
+# 	858.2011, 958.4333, 563.4199, 522.0789, 1267.783), NARRAYS.my.5356583020_C = c(1L, 
+# 	1L, 1L, 1L, 1L, 1L), ARRAY_STDEV.my.5356583020_C = c(NaN, NaN, 
+# 	NaN, NaN, NaN, NaN), BEAD_STDEV.my.5356583020_C = c(18.05332, 
+# 	230.0427, 121.8764, 156.202, 130.108, 374.7991), Avg_NBEADS.my.5356583020_C = c(14L, 
+# 	19L, 21L, 19L, 24L, 20L), Detection.my.5356583020_C = c(0.8666667, 
+# 	1, 1, 1, 1, 1)), .Names = c("TargetID", "ProbeID", "MIN_Signal.5356583020_A", 
+# 	"AVG_Signal.5356583020_A", "MAX_Signal.5356583020_A", "NARRAYS.5356583020_A", 
+# 	"ARRAY_STDEV.5356583020_A", "BEAD_STDEV.5356583020_A", "Avg_NBEADS.5356583020_A", 
+# 	"Detection.5356583020_A", "MIN_Signal.5356583020_B", "AVG_Signal.5356583020_B", 
+# 	"MAX_Signal.5356583020_B", "NARRAYS.5356583020_B", "ARRAY_STDEV.5356583020_B", 
+# 	"BEAD_STDEV.5356583020_B", "Avg_NBEADS.5356583020_B", "Detection.5356583020_B", 
+# 	"MIN_Signal.my.5356583020_C", "AVG_Signal.my.5356583020_C", "MAX_Signal.my.5356583020_C", 
+# 	"NARRAYS.my.5356583020_C", "ARRAY_STDEV.my.5356583020_C", "BEAD_STDEV.my.5356583020_C", 
+# 	"Avg_NBEADS.my.5356583020_C", "Detection.my.5356583020_C"), row.names = c(NA, 
+# 	6L), class = "data.frame")
+# 	expect_identical(res, expected.res)
+# 
+# 	df <- read.delim(files[2], stringsAsFactors=FALSE, check.names=FALSE)
+# 	res <- df[1:6, ]
+# 	expected.res <- structure(list(TargetID = c("biotin", "biotin", "cy3_hyb", "cy3_hyb", 
+# 	"cy3_hyb", "cy3_hyb"), ProbeID = c("ILMN_1343048", "ILMN_1343049", 
+# 	"ILMN_2038769", "ILMN_1343052", "ILMN_2038771", "ILMN_2038770"
+# 	), `5356583020_A.AVG_Signal` = c(16902.39, 20562.41, 17585.26, 
+# 	410.2783, 3419.561, 15378.33), `5356583020_A.BEAD_STDERR` = c(5062.077, 
+# 	4918.893, 4229.713, 101.1036, 735.4537, 4070.494), `5356583020_A.Avg_NBEADS` = c(85L, 
+# 	67L, 74L, 70L, 64L, 81L), `5356583020_A.Detection Pval` = c(1, 
+# 	1, 1, 1, 1, 1), `5356583020_B.AVG_Signal` = c(16668.27, 20507.38, 
+# 	15846.65, 407.3946, 3164.278, 15831.14), `5356583020_B.BEAD_STDERR` = c(6532.465, 
+# 	5919.903, 3202.289, 115.9396, 647.5594, 4153.448), `5356583020_B.Avg_NBEADS` = c(60L, 
+# 	84L, 62L, 51L, 77L, 63L), `5356583020_B.Detection Pval` = c(1, 
+# 	1, 1, 1, 1, 1), `my 5356583020_C.AVG_Signal` = c(16668.27, 20507.38, 
+# 	15846.65, 407.3946, 3164.278, 15831.14), `my 5356583020_C.BEAD_STDERR` = c(6532.465, 
+# 	5919.903, 3202.289, 115.9396, 647.5594, 4153.448), `my 5356583020_C.Avg_NBEADS` = c(60L, 
+# 	84L, 62L, 51L, 77L, 63L), `my 5356583020_C.Detection Pval` = c(1, 
+# 	1, 1, 1, 1, 1)), .Names = c("TargetID", "ProbeID", "5356583020_A.AVG_Signal", 
+# 	"5356583020_A.BEAD_STDERR", "5356583020_A.Avg_NBEADS", "5356583020_A.Detection Pval", 
+# 	"5356583020_B.AVG_Signal", "5356583020_B.BEAD_STDERR", "5356583020_B.Avg_NBEADS", 
+# 	"5356583020_B.Detection Pval", "my 5356583020_C.AVG_Signal", 
+# 	"my 5356583020_C.BEAD_STDERR", "my 5356583020_C.Avg_NBEADS", 
+# 	"my 5356583020_C.Detection Pval"), row.names = c(NA, 6L), class = "data.frame")
+# 	expect_identical(res, expected.res)
+# })
+
 test_that("zipfile as input", {
 	path <- system.file("extdata", package="lumidat")
 	outdir <- tempdir()
