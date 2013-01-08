@@ -643,8 +643,9 @@ test_that("columnNameGrepPattern=MIN_SIGNAL", {
 	), c("5356583020_A", "5356583020_B")))
 	expect_equivalent(res, expected.res)
 	
+	# @TODO deliberate error to make MJC consider:
+	# why are MIN_SIGNAL,MAX_Signal,AVG_SIGNAL all identical? is it just this test data??
 	expect_equivalent(TRUE, FALSE)
-	# TODO, warning, why are MIN_SIGNAL,MAX_Signal,AVG_SIGNAL all identical? is it just this test data??
 	
 })
 
@@ -667,8 +668,9 @@ test_that("columnNameGrepPattern=MAX_Signal", {
 	), c("5356583020_A", "5356583020_B")))
 	expect_equivalent(res, expected.res)
 	
+	# @TODO deliberate error to make MJC consider:
+	# why are MIN_SIGNAL,MAX_Signal,AVG_SIGNAL all identical? is it just this test data??
 	expect_equivalent(TRUE, FALSE)
-	# TODO, warning, why are MIN_SIGNAL,MAX_Signal,AVG_SIGNAL all identical? is it just this test data??
 })
 
 # # dropping the final terms in columnNameGrepPattern don't have an effet, at least on detection(), se.exprs(),
