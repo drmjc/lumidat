@@ -29,6 +29,10 @@ Installation
     library(devtools)
     install_github("lumidat", "drmjc")
 
+License
+=======
+Importantly, note that this code is provided under a GenePattern License agreement. See LICENSE file for more info.
+
 Usage
 =====
 There's an extensive package overview in the package-wide helpfile:
