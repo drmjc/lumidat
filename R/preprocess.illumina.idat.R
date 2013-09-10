@@ -16,9 +16,12 @@
 #' though each array should have a unique name, regardless of where it sits in the zipfile structure.
 #' 
 #' @section Array manifest files:
-#' Array manifest files can be downloaded from Illumina [2,3]. It is important to
-#'  use the TXT version, not the BGX version. You can use a newer release of the manifest file 
-#' as long as you get the right array type. For example, HumanHT-12_V3 arrays can use the 
+#' Each array version and revision has a specific manifest file; these are required for decoding
+#' idat files, and can be queried, or downloaded via \code{\link{list_illumina_manifest_files}}, and 
+#' \code{\link{download_illumina_manifest_file}}, respectively. Failing that, you can download
+#' them manually directly from Illumina [2,3]. It is important to
+#' use the TXT version, not the BGX version. You can use a newer \emph{R}elease of the manifest file 
+#' as long as you get the right array type and \emph{V}ersion. For example, HumanHT-12_V3 arrays can use the 
 #' \code{HumanHT-12_V3_0_R2_11283641_A.txt} or \code{HumanHT-12_V3_0_R3_11283641_A.txt} 
 #'  manifest files.
 #' 
@@ -65,7 +68,8 @@
 #'     \sQuote{Exception in thread "main" java.lang.OutOfMemoryError: Java heap space}
 #' Then you need to increase the amount of RAM, upto the maximum available in your system. If you 
 #' still get the error, then you need a 64-bit system with lots of RAM.\cr
-#' For Human HT12 arrays, the amount of RAM required is approximately 333MB RAM + 19MB per array.
+#' As a rough guide, on my machine, for Human HT12 arrays, the amount of RAM required is 
+#' approximately 333MB RAM + 19MB per array.
 #' 
 #' @section TODO:
 #' \itemize{
@@ -208,7 +212,7 @@ preprocess.illumina.idat <- function(files=NULL, path=NULL, zipfile=NULL, manife
 	# Setup the system call
 	# Java stuff
 	nzchar(Sys.which("java")) || stop("Can't find a valid Java")
-	jar <- file.path(.path.package('lumidat'), 'bin', 'lumidat-1.2.jar')
+	jar <- file.path(.path.package('lumidat'), 'bin', 'lumidat-1.2.2.jar')
 	file.exists(jar) || stop("Can't find jar.")
 	
 	# setup the command line

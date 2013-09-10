@@ -24,8 +24,8 @@ Description: This package enables the decryption, and
     order of the rows, the background correction procedure
     (which is only applied to gene-probes), the file
     formats and names.
-Version: 1.2.0
-Date: 2013-01-08
+Version: 1.2.2
+Date: 2013-01-22
 Depends:
     Biobase
 Imports:

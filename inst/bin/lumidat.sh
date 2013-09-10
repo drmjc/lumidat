@@ -18,7 +18,9 @@
 # 2012-05-30: doesn't work if your prefix has spaces/hyphens in it...
 # 2012-10-02: dropped readarray, which is non-portable; increased default memory
 # 2013-01-08: updated to use lumidat-1.2, which natively handles the trailing '-' parameter.
-# 
+# 2013-01-09: look for jar in same dir as this script first.
+# - use lumidat-1.2.1.jar, which has improved error message for the common occurence of running out of memory.
+# 2013-01-11: use lumidat-1.2.2.jar, which handles probes with low Numbers of Beads (<3)
 # Mark Cowley
 ################################################################################
 
@@ -36,18 +38,21 @@ function die {
 ################################################################################
 
 MEMORY=-Xmx4000M
-
+DIR="$( cd -P "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+PROGRAM=lumidat-1.2.2.jar
 #
 # Where's the JAR?
 # 
-if [[ `uname` == "Darwin" ]]; then
-    JAR=~/bin/lumidat-1.2.jar
+if [[ -f $DIR/$PROGRAM ]]; then
+	JAR=$DIR/$PROGRAM
+elif [[ `uname` == "Darwin" ]]; then
+    JAR=~/bin/$PROGRAM
 elif [[ `uname` == "Linux" ]]; then 
-    JAR=/misc/ICGCPancreas/bin/lumidat-1.2.jar
+    JAR=/misc/ICGCPancreas/bin/$PROGRAM
 else
-    JAR=./lumidat-1.2.jar
+    JAR=./$PROGRAM
 fi
-[[ -e $JAR ]] || die "I can't find the JAR file.  Aborting."
+[[ -e "$JAR" ]] || die "I can't find the JAR file ($PROGRAM).  Aborting."
 
 #
 # Run lumidat, accepting all command line arguments, and, if specified,

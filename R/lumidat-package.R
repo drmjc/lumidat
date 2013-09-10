@@ -1,5 +1,6 @@
 #' Preprocess Illumina Gene Expression iDAT files.
 #' 
+#' @description
 #' This package enables the decryption, and preprocessing of lllumina gene expression iDAT files 
 #' (aka version 1 iDAT files). Previously, the only option that Illumina gene expression users 
 #' had was to rely upon a miroarray core facility with access to an Illumina Scanner and a copy of 
@@ -12,11 +13,15 @@
 #' calculation, the order of the rows, the background correction procedure, the file headers and
 #' ProbeID naming, and sample naming.
 #' 
+#' @details
 #' The bulk of the work is carried out by a Java program, which aims to reproduce the behaviour of 
 #' Illumina GenomeStudio, thereby producing \dQuote{Sample Probe Profile.txt} and \dQuote{Control Probe 
 #' Profile.txt} files. 
 #' This Java program is initially based on the \emph{IlluminaExpressionFileCreator} GenePattern module [3], 
 #' created by the Broad Institute (most of the coding done by David Eby).
+#' 
+#' This package will NOT read iDAT files from Illumina Infinium SNP arrays (aka Version 3 iDAT files); 
+#' however the \code{crlmm} package can read them.
 #' 
 #' @section Key functions:
 #' \code{\link{preprocess.illumina.idat}} provides a number of options for reading iDAT files, 
@@ -32,8 +37,8 @@
 #' \code{\link[limma]{read.ilmn}}, and allows users to use the \emph{limma} pipeline starting with iDAT 
 #' files.
 #' 
-#' This package will NOT read iDAT files from Illumina Infinium SNP arrays (aka Version 3 iDAT files); 
-#' however the \code{crlmm} package can read them.
+#' \code{\link{list_illumina_manifest_files}} and \code{\link{download_illumina_manifest_file}} allow
+#' you to query and download the required array manifest files.
 #' 
 #' @section Array manifest files:
 #' Array manifest files are required, and can be downloaded from Illumina [5], [6]. These files 
@@ -43,6 +48,8 @@
 #' \code{\link{download_illumina_manifest_file}}.
 #'
 #' @section Analysis pipeline:
+#' ## @TODO, move this code into a vignette, as the formatting is terrible.
+#' 
 #' # \cr
 #' # import & initial QC \cr
 #' # \cr
