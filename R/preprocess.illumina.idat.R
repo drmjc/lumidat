@@ -212,7 +212,7 @@ preprocess.illumina.idat <- function(files=NULL, path=NULL, zipfile=NULL, manife
 	# Setup the system call
 	# Java stuff
 	nzchar(Sys.which("java")) || stop("Can't find a valid Java")
-	jar <- file.path(.path.package('lumidat'), 'bin', 'lumidat-1.2.2.jar')
+	jar <- file.path(path.package('lumidat'), 'bin', 'lumidat-1.2.2.jar')
 	file.exists(jar) || stop("Can't find jar.")
 	
 	# setup the command line
