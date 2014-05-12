@@ -1,7 +1,7 @@
 lumidat
 =======
 
-An R package for processing Illumina gene expression idat files
+An R package for processing Illumina gene expression idat files to a variety of formats, including GenomeStudio-like TXT files, `LumiBatch` or `EListRaw` objects for use with the `lumi` or `limma` R packages, and GCT files for use in Broad Institute's GenePattern.
 
 Description
 ===========
@@ -13,11 +13,11 @@ upon a microarray core facility with access to an
 Illumina Scanner and a copy of Illumina BeadStudio, or
 GenomeStudio to pre-process the array data. Our
 intention is to allow users to pre-process their
-probe-level Illumina data using this software, thereby
+bead-level Illumina gene expression data using this software, thereby
 enabling them to choose from the collection of
 sophisticated normalisation and pre-processing
-procedures, which have recently been demonstrated by
-Shi et al, 2010 to simultaneously improve noise and
+procedures, which have been demonstrated by
+Shi et al, 2010 to simultaneously improve noise and reduce
 bias, via the *lumi*, or *limma* pipelines. We
 have made every effort to reproduce the GenomeStudio
 output, down to the Detection P-Value calculation, the
@@ -31,7 +31,7 @@ Installation
 
 License
 =======
-Importantly, note that this code is provided under a GenePattern License agreement. See LICENSE file for more info.
+Importantly, this code is provided under a GenePattern License agreement. See LICENSE file for more info.
 
 Usage
 =====
